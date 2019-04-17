@@ -42,17 +42,14 @@ if [[ ! `uname` =~ "darwin" ]]; then
   git config --global core.editor "subl -n -w $@ >/dev/null 2>&1"
   echo 'export BUNDLER_EDITOR="subl $@ >/dev/null 2>&1 -a"' >> zshrc
 else
-  git config --global core.editor "'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl' -n -w"
-  bundler_editor="'/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl'"
+  git config --global core.editor "'/mnt/c/Program\ Files/Sublime\ Text\ 3/sublime_text.exe' -n -w"
+  bundler_editor="'/mnt/c/Program\ Files/Sublime\ Text\ 3/sublime_text.exe'"
   echo "export BUNDLER_EDITOR=\"${bundler_editor} -a\"" >> zshrc
 fi
 
 # Sublime Text
-if [[ ! `uname` =~ "darwin" ]]; then
-  SUBL_PATH=~/.config/sublime-text-3
-else
-  SUBL_PATH=~/Library/Application\ Support/Sublime\ Text\ 3
-fi
+SUBL_PATH=/mnt/c/Program\ Files/Sublime\ Text\ 3
+
 mkdir -p $SUBL_PATH/Packages/User $SUBL_PATH/Installed\ Packages
 backup "$SUBL_PATH/Packages/User/Preferences.sublime-settings"
 curl -k https://sublime.wbond.net/Package%20Control.sublime-package > $SUBL_PATH/Installed\ Packages/Package\ Control.sublime-package
